@@ -94,6 +94,8 @@ done
 
 # import FileName
 
+import PlayerChunkMap
+import ChunkMapDistance
 
 
 ########################################################

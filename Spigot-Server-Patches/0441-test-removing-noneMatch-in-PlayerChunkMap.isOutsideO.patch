@@ -1,0 +1,31 @@
+From 23fb16d054d08bb40a1381d0386895a84f2f3086 Mon Sep 17 00:00:00 2001
+From: jasonhojh1122 <jasonhojh1122@gmail.com>
+Date: Mon, 17 Feb 2020 21:36:31 +0800
+Subject: [PATCH] test removing noneMatch in PlayerChunkMap.isOutsideOfRange()
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
+index 46d20538..a6afa8a7 100644
+--- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
++++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
+@@ -1274,7 +1274,8 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
+         //double blockRange = (reducedRange) ? Math.pow(chunkRange << 4, 2) : 16384.0D; // Paper - use from event
+         // Spigot end
+         long i = chunkcoordintpair.pair();
+-
++        return !this.chunkDistanceManager.d(i);
++        /*
+         return !this.chunkDistanceManager.d(i) ? true : this.playerMap.a(i).noneMatch((entityplayer) -> {
+             // Paper start -
+             com.destroystokyo.paper.event.entity.PlayerNaturallySpawnCreaturesEvent event;
+@@ -1289,6 +1290,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
+             return (!entityplayer.isSpectator() && a(chunkcoordintpair, (Entity) entityplayer) < blockRange); // Spigot
+             // Paper end
+         });
++        */
+     }
+ 
+     private boolean b(EntityPlayer entityplayer) {
+-- 
+2.25.0.windows.1
+
